@@ -1,0 +1,41 @@
+{
+  "name": "claude-orchestra",
+  "version": "1.0.0",
+  "description": "Self-hosted autonomous Claude Code agents orchestrated via GitHub webhooks",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src tests",
+    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "deploy": "bash scripts/deploy.sh"
+  },
+  "keywords": [
+    "claude",
+    "ai",
+    "github",
+    "webhooks",
+    "automation",
+    "agents"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "hono": "^4.0.0",
+    "hono-rate-limiter": "^0.3.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitest/ui": "^1.2.0",
+    "bun-types": "latest",
+    "prettier": "^3.2.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.2.0"
+  }
+}
