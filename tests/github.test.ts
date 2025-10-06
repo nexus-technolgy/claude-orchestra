@@ -50,4 +50,36 @@ Thank you!
       expect(result).toBe('do something');
     });
   });
+
+  describe('isApprovalCommand', () => {
+    it('should detect @claude approve command', () => {
+      const body = '@claude approve';
+      const result = githubService.isApprovalCommand(body);
+      expect(result).toBe(true);
+    });
+
+    it('should detect case-insensitive approval', () => {
+      const body = '@CLAUDE APPROVE';
+      const result = githubService.isApprovalCommand(body);
+      expect(result).toBe(true);
+    });
+
+    it('should detect approval with extra spaces', () => {
+      const body = '@claude   approve';
+      const result = githubService.isApprovalCommand(body);
+      expect(result).toBe(true);
+    });
+
+    it('should not match other @claude commands', () => {
+      const body = '@claude do something else';
+      const result = githubService.isApprovalCommand(body);
+      expect(result).toBe(false);
+    });
+
+    it('should not match plain text', () => {
+      const body = 'I approve this';
+      const result = githubService.isApprovalCommand(body);
+      expect(result).toBe(false);
+    });
+  });
 });
